@@ -46,7 +46,7 @@ bot.on('message', (msg) => {
 
   if (!userWhitelist.includes(msg.chat.id)) {
     try {
-      bot.sendMessage(chatId, 'You cannot use me. It\'s a private bot owned by @useless')
+      // bot.sendMessage(chatId, 'You cannot use me. It\'s a private bot owned by @useless')
     } catch (_) { }
     return
   }
