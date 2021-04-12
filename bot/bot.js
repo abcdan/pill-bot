@@ -32,10 +32,10 @@ bot.onText(/last/, (msg) => {
   const lastConfirm = getLastConfirm()
   const agoTime = moment(lastConfirm.toUTCString()).fromNow()
 
-  bot.sendMessage(chatId, `⌚ The last time your confirmed was which was about ${agoTime}`, { parse_mode: 'MarkdownV2' })
+  bot.sendMessage(chatId, `⌚ The last time your confirmed was about ${agoTime}`, { parse_mode: 'MarkdownV2' })
 })
 
-const job = new CronJob('0 20 * * *', () => {
+const job = new CronJob('* 21 * * *', () => {
   bot.sendMessage(PERSON_TO_REMIND, '⚠ Take your pill and /confirm it for me')
 }, null, true, 'Europe/Amsterdam')
 
