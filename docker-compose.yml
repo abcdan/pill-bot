@@ -5,5 +5,4 @@ services:
     restart: always
     build: bot
     env_file:
-    volumes:
-      - 'chainfile.json:./chainfile.json'
+      - .env
