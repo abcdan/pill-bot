@@ -21,7 +21,9 @@ const userWhitelist = [PERSON_TO_REMIND, PERSON_TO_WARN]
 function init () {
   console.log('Initializing chainfile')
   if (!chain.has('lastConfirm')) {
-    chain.set('lastConfirm', getDate())
+    const d = new Date()
+    d.setDate(d.getDate() - 1)
+    chain.set('lastConfirm', d)
   }
 
   if (!chain.has('day')) {
@@ -30,7 +32,16 @@ function init () {
 
   console.log('Chain initialized')
 }
-init()
+/**
+ * Dump
+ */
+bot.onText(/dump/, (msg) => {
+  const chatId = msg.chat.id
+  if (!userWhitelist.includes(chatId)) { return }
+
+  const chainData = chain.full()
+  bot.sendMessage(chatId, JSON.stringify(chainData, (key, value) => (value instanceof Map ? [...value] : value)))
+})
 
 /**
  * Confirm that the pill was taken
@@ -220,3 +231,5 @@ function getCurrentDay () {
 function getDate () {
   return new Date()
 }
+
+init()
