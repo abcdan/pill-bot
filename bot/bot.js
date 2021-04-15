@@ -109,8 +109,7 @@ bot.onText(/\/set (.+)/, (msg, match) => {
 /**
  * Crons
  */
-// 0 22 * * *
-const job = new CronJob('* * * * *', () => {
+const job = new CronJob('0 21 * * *', () => {
   const currentDay = getCurrentDay() + 1
   console.log(currentDay)
   const takePill = takeOrPause(currentDay)
