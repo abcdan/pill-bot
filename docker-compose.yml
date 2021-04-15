@@ -6,3 +6,5 @@ services:
     build: bot
     env_file:
       - .env
+     volumes:
+      - './chainson.json:/usr/src/app'
